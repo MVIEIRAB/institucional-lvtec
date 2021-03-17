@@ -1,57 +1,34 @@
 const Request = require('supertest')
 
-const dbHandler = require('../db-handler')
-const mongoose = require('mongoose')
-const MongoMemoryServer = require('mongodb-memory-server')
+const crypto = require('crypto')
 
-let mongoServer
-let mongoUri
+const generate = () => {
+    return crypto.randomBytes(20).toString('hex')
+}
 
-beforeAll(async () => {
-    mongoServer = new MongoMemoryServer()
-    const mongoUri = await mongoServer.getUri()
-    await mongoose.connect(mongoUri, opts, (err) => {
-        if (err) console.error(err)
-    })
-})
+const content = generate()
 
-afterAll(async () => {
-    await mongoose.disconnect()
-    await mongoServer.stop()
-})
-
-describe('...', () => {
-    it('...', async () => {
-        const User = mongoose.model('User', new mongoose.Schema({ name: String }))
-        const count = await User.count()
-        expect(count).toEqual(0)
-    })
-})
-
-const app = mongoUri
+const app = 'http://localhost:3000'
 
 describe('usuario na aplicação', () => {
     it('Deve criar um usuario', async () => {
         const res = await Request(app)
             .post('/user/create')
             .send({
-                name: 'Matheus',
-                email: 'mabasambasdsaaads@gmail.com',
-                password: 'jacapodre123'
+                name: content,
+                email: content,
+                password: content
             })
-
         expect(res.status).toBe(200)
-        expect(res.body.user.name).toBe('Matheus')
     })
 
     it('Usuario se autentica na aplicação', async () => {
         const res = await Request(app)
             .post('/user/authenticate')
             .send({
-                email: 'mavb.financas@gmail.com',
-                password: 'jacapodre123'
+                email: content,
+                password: content
             })
-        console.log(res)
         expect(res.status).toBe(200)
     })
 

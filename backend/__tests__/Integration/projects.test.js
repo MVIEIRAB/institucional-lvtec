@@ -1,7 +1,16 @@
 const Request = require('supertest')
 
+const crypto = require('crypto')
+
 const app = 'http://localhost:3000'
+
 let token
+
+const generate = () => {
+    return crypto.randomBytes(20).toString('hex')
+}
+
+const content = generate()
 
 beforeAll(async () => {
     const res = await Request(app)
@@ -36,7 +45,7 @@ describe('Manipulando Projetos', () => {
         const res = await Request(app)
             .post('/project/create')
             .set('Authorization', `Bearer ${token}`)
-            .send({ name: 'Institucionaestshhseesasassdno', description: 'projetos do governo', url: '', logo: '' })
+            .send({ name: content, description: content, url: content, logo: content })
         expect(res.status).toBe(200)
     })
 
@@ -47,5 +56,3 @@ describe('Manipulando Projetos', () => {
         expect(res.status).toBe(204)
     })
 })
-
-console.log(token)

@@ -12,7 +12,7 @@ const authMiddleware = require('./middlewares/auth')
 
 // SETANDO O SERVIDOR RESTIFY
 const app = restify.createServer()
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 
 // BODYPARSER
 app.use(restify.plugins.bodyParser());

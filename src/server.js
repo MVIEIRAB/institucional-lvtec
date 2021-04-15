@@ -22,22 +22,23 @@ app.use(restify.plugins.bodyParser());
 const db = mongoose.connection
 db.once('open', () => {
     console.log('database connected!')
-}).on('error', (error) => { console.log('connection error!', error) })
+})
+    .on('error', (err) => { console.log('connection error!', err) })
 
 // ROTAS DA APLICAÇÃO (CRIAÇÃO DE PROJETOS)
-app.post('/project/create', authMiddleware, ProjectCollection.create)
+app.post('/project', authMiddleware, ProjectCollection.create)
 
-app.patch('/project/update/:id', authMiddleware, ProjectCollection.update)
+app.patch('/project/:id', authMiddleware, ProjectCollection.update)
 
-app.put('/project/insert/:id', authMiddleware, ProjectCollection.insert)
+app.put('/project/:id', authMiddleware, ProjectCollection.insert)
 
-app.del('/project/delete/:id', authMiddleware, ProjectCollection.delete)
+app.del('/project/:id', authMiddleware, ProjectCollection.delete)
 
-app.get('/project/find', authMiddleware, ProjectCollection.find)
+app.get('/project', authMiddleware, ProjectCollection.find)
 
-app.get('/project/findperid/:id', authMiddleware, ProjectCollection.findById)
+app.get('/project/:id', authMiddleware, ProjectCollection.findById)
 
 // ROTAS DA APLICAÇÃO (CRIAÇÃO E AUTENTICAÇÃO DE USUARIOS)
-app.post('/user/create', UserController.create)
-app.post('/user/authenticate', UserController.authenticate)
-app.get('/user/listuser', authMiddleware, UserController.listUsers)
+app.post('/user', UserController.create)
+app.post('/user', UserController.authenticate)
+app.get('/user', authMiddleware, UserController.listUsers)

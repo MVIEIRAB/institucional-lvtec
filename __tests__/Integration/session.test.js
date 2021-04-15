@@ -6,7 +6,7 @@ const generate = () => {
     return crypto.randomBytes(20).toString('hex')
 }
 
-const content = generate()
+let content = generate()
 
 const app = 'http://localhost:3000'
 

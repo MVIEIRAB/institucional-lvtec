@@ -47,8 +47,8 @@ class ProjectCollection {
     }
     async delete(req, res) {
         try {
-            const data = await Project.deleteOne({_id: req.params.id})
-            res.send(204,data )
+            const data = await Project.deleteOne({ _id: req.params.id })
+            res.send(200, data)
         } catch (err) {
             res.send(400, err)
             console.log(err)

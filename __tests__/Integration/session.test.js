@@ -19,6 +19,7 @@ describe('usuario na aplicação', () => {
                 email: content,
                 password: content
             })
+
         expect(res.status).toBe(200)
     })
 
@@ -29,6 +30,7 @@ describe('usuario na aplicação', () => {
                 email: content,
                 password: content
             })
+
         expect(res.status).toBe(200)
     })
 

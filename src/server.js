@@ -12,7 +12,8 @@ const authMiddleware = require('./middlewares/auth')
 
 // SETANDO O SERVIDOR RESTIFY
 const app = restify.createServer()
-app.listen(process.env.PORT || 3000)
+
+app.listen(process.env.PORT || 3000, () => { console.log('server has iniciated') })
 
 // BODYPARSER
 app.use(restify.plugins.bodyParser());
@@ -20,7 +21,7 @@ app.use(restify.plugins.bodyParser());
 // CONECTANDO AO BANCO DE DADOS
 const db = mongoose.connection
 db.once('open', () => {
-    console.log('Database Connected!')
+    console.log('database connected!')
 }).on('error', (error) => { console.log('connection error!', error) })
 
 // ROTAS DA APLICAÇÃO (CRIAÇÃO DE PROJETOS)

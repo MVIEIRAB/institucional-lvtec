@@ -13,7 +13,9 @@ const authMiddleware = require('./middlewares/auth')
 // SETANDO O SERVIDOR RESTIFY
 const app = restify.createServer()
 
-app.listen(process.env.PORT || 3000, () => { console.log('server has iniciated') })
+const HOST = '0.0.0.0'
+
+app.listen(process.env.PORT || 3000, HOST, () => { console.log('server has iniciated') })
 
 // BODYPARSER
 app.use(restify.plugins.bodyParser());

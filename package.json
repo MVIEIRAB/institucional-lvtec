@@ -4,7 +4,7 @@
   "description": "Projeto - Institucional",
   "main": "./src/server.js",
   "scripts": {
-    "start": "node .",
+    "start": "nodemon .",
     "dev": "nodemon . --ignore __tests__",
     "test": "jest"
   },

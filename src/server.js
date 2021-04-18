@@ -41,6 +41,6 @@ app.get('/project', authMiddleware, ProjectCollection.find)
 app.get('/project/:id', authMiddleware, ProjectCollection.findById)
 
 // ROTAS DA APLICAÇÃO (CRIAÇÃO E AUTENTICAÇÃO DE USUARIOS)
-app.post('/user', UserController.create)
+app.put('/user', UserController.create)
 app.post('/user', UserController.authenticate)
 app.get('/user', authMiddleware, UserController.listUsers)

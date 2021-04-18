@@ -29,7 +29,7 @@ db.once('open', () => {
 
 // ROTA DE INICIALIZAÇÃO DA APLICAÇÃO
 app.get('/salute', (req, res) => {
-    res.send('Bem vindo ao LVTEC Institucional.')
+    res.send('Bem vindo ao LVTEC')
     res.end()
 })
 

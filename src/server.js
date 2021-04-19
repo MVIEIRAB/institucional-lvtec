@@ -28,7 +28,7 @@ db.once('open', () => {
     .on('error', (err) => { console.log('connection error!', err) })
 
 // ROTA DE INICIALIZAÇÃO DA APLICAÇÃO
-app.get('/salute', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Bem vindo ao LVTEC Institucional.')
     res.end()
 })
